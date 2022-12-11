@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="canva" width="450" height="450" style="border:1px solid #d5f2f2;">
+</canvas>
+
+<script>
+    var canva = document.getElementById('canva'),
+        ctx = canva.getContext('2d');
+    var Point = function (x, y) {
+        this.startX = x;
+        this.startY = y;
+    };
+    var points = [new Point(0, 0), 
+                  new Point(100, 100), 
+                  new Point(200, 200),
+                  new Point(300, 300), 
+                  new Point(450, 450), 
+                ];
+    ctx.strokeStyle = "black";
+    ctx.moveTo(points[0].startX, points[0].startY);
+    var counter = 1,
+    inter = setInterval(function() {
+        var point = points[counter++];
+        ctx.lineTo(point.startX, point.startY); 
+        ctx.stroke();
+        if (counter >= points.length) {
+           clearInterval(inter);
+        }
+        console.log(counter);
+    }, 1000);
+    ctx.stroke();
+</script>
+</body>
+</html>

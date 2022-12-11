@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video</title>
+</head>
+<style>
+  body {
+  background-image: radial-gradient(circle at top right, #17141d, white);
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  width: 100%;
+}
+</style>
+<body>
+    <div style="text-align:center; align-items:center;" > 
+        <video id="video1" width="600" height="400">
+          <source src="./frozen.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+         <br>
+          <progress value="0" id="progress"></progress> 
+          <label id="timer" for="progress" role="timer"></label>
+          <!-- <p id="timer"></p> -->
+           <input type = "range"   id = "audioVolume"> 
+             <button onclick="setvol()">mute</button>
+          <br> <br>
+        <button onclick="play()">Play</button> 
+        <button onclick="Pause()">Pause</button>
+        <button onclick="startTime()"><<</button>
+        <button onclick="subCurTime()"><</button>
+        <button onclick="addCurTime()">></button>
+        <button onclick="fullTime()">>></button>
+        <button onclick="Full()">Full</button>
+        <button onclick="Normal()">Normal</button>
+        <br>
+        speed: <input type = "range"   id = "speed" min="0.5" max="2" step="0.5"> 
+      </div> 
+      <script> 
+        var myVideo = document.getElementById("video1"); 
+        progress = document.getElementById("progress");
+        audioVolume = document.getElementById ("audioVolume");
+        timer= document.getElementById("timer");
+        speed = document.getElementById("speed");
+
+        
+        function play() { 
+            myVideo.play(); 
+        } 
+          function Pause() { 
+            myVideo.pause(); 
+        } 
+        
+        function Full() { 
+            myVideo.width = 1300; 
+            myVideo.height = 500;
+        } 
+        
+        function Normal() { 
+            myVideo.width = 600; 
+        } 
+        myVideo.addEventListener('timeupdate',function(){
+           progress.value=myVideo.currentTime / myVideo.duration;
+           timer.innerHTML =( Math.round(myVideo.currentTime))/100+ "/1:11";
+        })
+        audioVolume.addEventListener('change',function(e){
+           myVideo.volume= e.currentTarget.value/100;
+        })
+        function addCurTime() { 
+        myVideo.currentTime=myVideo.currentTime+5;
+        } 
+        function fullTime() { 
+        myVideo.currentTime=111;
+        } 
+        function startTime() { 
+        myVideo.currentTime=0;
+        }
+        function subCurTime() { 
+        myVideo.currentTime=myVideo.currentTime-5;
+        } 
+        function setvol() { 
+          myVideo.volume=0/100;
+        } 
+        speed.addEventListener('change',function(e){
+           myVideo.playbackRate= e.currentTarget.value/2;
+        })
+        </script> 
+</body>
+</html>

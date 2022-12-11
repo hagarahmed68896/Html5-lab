@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Range</title>
+</head>
+<body>
+    red: <input type = "range" min="0" max="255"  value="0" step="1" id = "red" > <br>
+    green: <input type = "range" min="0" max="255"  value="0" step="1" id = "green" > <br>
+    blue: <input type = "range" min="0" max="255"  value="0" step="1" id = "blue" > <br><br>
+    <h1 id="text" onchange="changeColor();">Hagar Ahmed</h1>
+    <script>
+      var txt = document.getElementById("text");
+     
+        function changeColor(){
+        let  red = document.getElementById("red").value;
+        let green = document.getElementById("green").value;
+        let blue = document.getElementById("blue").value;
+        let color = 'rgb('+red+','+green+','+blue+')';
+        txt.style.color = color;
+     }
+    document.getElementById("red").addEventListener('input',changeColor);
+    document.getElementById("green").addEventListener('input',changeColor);
+    document.getElementById("blue").addEventListener('input',changeColor);
+
+    </script>
+</body>
+</html>
